@@ -1,8 +1,8 @@
-//
-// This is only a SKELETON file for the 'Square root' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
-export const squareRoot = () => {
-  throw new Error('Remove this statement and implement this function');
+export const squareRoot = (num) => {
+  let xi = num/2;
+  while(1){
+    xi = (xi + num/xi)/2;
+    if ((num - (xi**2)) < 0.001) break;
+  }
+  return Math.floor(xi);
 };
