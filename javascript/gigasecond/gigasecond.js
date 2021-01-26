@@ -1,5 +1,4 @@
+const gigaSecond = 10**12;
 export const gigasecond = (now) => {
-  let inSeconds = now.getTime();
-  inSeconds += 10**12;
-  return new Date(inSeconds);
+  return new Date(now.getTime() + gigaSecond);
 };
