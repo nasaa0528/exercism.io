@@ -1,35 +1,41 @@
 export class Clock {
-  constructor(hour, min=0) {
-    this.hour = hour;
-    this.min = min;
+  constructor(h=0, m=0) {
+    this.h = h;
+    this.m = m;
   }
 
-  toFormat(){
-    let minSign = (this.min < 0) ? -1 : 1;
-    this.hour = this.hour + (Math.floor(this.min / 60));
-    this.min = this.min % 60;
-    if (minSign === -1 && this.min !== -0) this.min = 60 + this.min;
-    let hourSign = (this.hour < 0) ? -1 : 1;
-    this.hour = this.hour % 24;
-    this.hour = (this.hour < 0) ? (24 + this.hour): this.hour;
+  toString(){
+    this.syncTime();
+    return ((this.h < 10) ? `0${this.h}` : this.h) + ":" +
+           ((this.m < 10) ? `0${this.m}` : this.m);
   }
 
-  toString() {
-    this.toFormat();
-    if (this.hour < 10) this.hour = "0"+this.hour;
-    if (this.min < 10) this.min = "0"+this.min;
-    return ""+this.hour+":"+this.min;
+  syncTime(){
+    (this.m > 0) ? (this.h += Math.floor(this.m / 60)) :
+      (this.h += Math.ceil( this.m / 60 ))
+    this.m %= 60;
+
+    if (this.m < 0) {
+      this.m += 60;
+      this.h--;
+    }
+
+    this.h %= 24;
+    if(this.h < 0)
+      this.h += 24;
   }
 
-  plus(addMin) {
-    this.min += addMin;
+  plus(m) {
+    this.m += m;
+    return this;
   }
 
-  minus() {
-    throw new Error('Remove this statement and implement this function');
+  minus(m) {
+    this.m -= m;
+    return this;
   }
 
-  equals() {
-    throw new Error('Remove this statement and implement this function');
+  equals(time){
+    return this.toString() === time.toString();
   }
 }
