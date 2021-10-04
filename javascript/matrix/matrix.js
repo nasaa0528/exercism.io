@@ -8,6 +8,10 @@ export class Matrix {
   }
 
   get columns() {
-    return this.matrix[0].map((_, colIndex) => this.matrix.map(row => row[colIndex]));
+    return this.transpose(this.matrix);
+  }
+
+  transpose(rows) {
+    return rows[0].map((_, colIndex) => rows.map(row => row[colIndex]));
   }
 }
