@@ -1,13 +1,16 @@
+const removeExtraChars = (sentence) => {
+  sentence = sentence.toLowerCase();
+  sentence = sentence.replace(/[^A-Za-z0-9']/g, ' ').trim();
+  return sentence;
+}
+
+const convertNormalizedArray = (sentence) => {
+  return sentence.split(/\s+/).map(word => word.replace(/^["|']?|["|']?$/g, ""));
+}
+
 export const countWords = (words) => {
-  words = words.toLowerCase();
-  words = words.replace(/[^A-Za-z0-9']/g, ' ');
-
-  for (const char of words){
-    console.log(char, char.charCodeAt());
-  }
-
-  const wordArr = words.split(/\s+/);
-  //console.log(wordArr);
+  words = removeExtraChars(words);
+  const wordArr = convertNormalizedArray(words);
   const uniqWords = new Set(wordArr);
   const result = {};
 
