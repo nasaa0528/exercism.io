@@ -1,13 +1,19 @@
 export const countWords = (words) => {
-  const dummyRemovedWords = words.toLowerCase().replace(/[,\.!&@$%^:]/g, " ")
-  const splittedWords = dummyRemovedWords.split(/\s+/);
+  words = words.toLowerCase();
+  words = words.replace(/[^A-Za-z0-9']/g, ' ');
+
+  for (const char of words){
+    console.log(char, char.charCodeAt());
+  }
+
+  const wordArr = words.split(/\s+/);
+  //console.log(wordArr);
+  const uniqWords = new Set(wordArr);
   const result = {};
-  console.log(splittedWords);
-  //for (let word of splittedWords){
-    //console.log(word);
-    //word = (word[0] === "'" || word[0] === '"') ? word.splice(1,) : word;
-    //console.log(word);
-  //}
-  //console.log(splittedWords);
-  //throw new Error('Remove this statement and implement this function');
+
+  uniqWords.forEach(item => {
+    result[item] = wordArr.filter((word) => word === item).length;
+  });
+
+  return result;
 };
