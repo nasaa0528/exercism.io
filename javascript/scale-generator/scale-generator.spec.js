@@ -2,7 +2,7 @@ import { Scale } from './scale-generator';
 
 describe('ScaleGenerator', () => {
   describe('Chromatic scales', () => {
-    test('Chromatic scale with sharps', () => {
+    xtest('Chromatic scale with sharps', () => {
       const expected = [
         'C',
         'C#',
@@ -20,7 +20,7 @@ describe('ScaleGenerator', () => {
       expect(new Scale('C').chromatic()).toEqual(expected);
     });
 
-    xtest('Chromatic scale with flats', () => {
+    test('Chromatic scale with flats', () => {
       const expected = [
         'F',
         'Gb',
@@ -37,7 +37,7 @@ describe('ScaleGenerator', () => {
       ];
       expect(new Scale('F').chromatic()).toEqual(expected);
     });
-  });
+  }); 
 
   describe('Scales with specified intervals', () => {
     xtest('Simple major scale', () => {
